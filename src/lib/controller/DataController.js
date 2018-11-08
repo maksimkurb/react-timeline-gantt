@@ -9,17 +9,17 @@ export default class DataController {
     this._dataToRender = [];
   }
 
-  initialize = (start, end, nowposition, daywidth) => {
-    this.nowposition = nowposition;
-    this.daywidth = daywidth;
-    this.setLimits(start, end, nowposition, daywidth);
+  initialize = (start, end, nowPosition, dayWidth) => {
+    this.nowPosition = nowPosition;
+    this.dayWidth = dayWidth;
+    this.setLimits(start, end, nowPosition, dayWidth);
     this.loadDataHorizon();
   };
 
   // OnScroll
-  setStartEnd = (start, end, nowposition, daywidth) => {
-    this.nowposition = nowposition;
-    this.daywidth = daywidth;
+  setStartEnd = (start, end, nowPosition, dayWidth) => {
+    this.nowPosition = nowPosition;
+    this.dayWidth = dayWidth;
     if (this.needData(start, end)) {
       this.setLimits(start, end);
       this.loadDataHorizon();
@@ -40,13 +40,13 @@ export default class DataController {
   loadDataHorizon = () => {
     const lowerLimit = DateHelper.pixelToDate(
       this.lower_limit,
-      this.nowposition,
-      this.daywidth,
+      this.nowPosition,
+      this.dayWidth,
     );
     const upLimit = DateHelper.pixelToDate(
       this.upper_limit,
-      this.nowposition,
-      this.daywidth,
+      this.nowPosition,
+      this.dayWidth,
     );
     this.onHorizonChange(lowerLimit, upLimit);
   };

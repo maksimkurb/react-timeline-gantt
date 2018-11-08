@@ -42,8 +42,8 @@ export class DataViewPort extends Component {
   };
 
   // calculatePosition=(item)=>{
-  //     let new_position=DateHelper.dateToPixel(item.start,this.props.nowposition,this.props.dayWidth);
-  //     let new_width=DateHelper.dateToPixel(item.end,this.props.nowposition,this.props.dayWidth)-new_position;
+  //     let new_position=DateHelper.dateToPixel(item.start,this.props.nowPosition,this.props.dayWidth);
+  //     let new_width=DateHelper.dateToPixel(item.end,this.props.nowPosition,this.props.dayWidth)-new_position;
   //     //Checking start
   //     if (new_position<this.props.boundaries.lower){
   //         if (new_position+new_width<this.props.boundaries.lower){
@@ -68,19 +68,20 @@ export class DataViewPort extends Component {
     for (let i = this.props.startRow; i < this.props.endRow + 1; i++) {
       const item = this.props.data[i];
       if (!item) break;
+
       // FIXME PAINT IN BOUNDARIES
 
-      const new_position = DateHelper.dateToPixel(
+      const newPosition = DateHelper.dateToPixel(
         item.start,
-        this.props.nowposition,
+        this.props.nowPosition,
         this.props.dayWidth,
       );
-      const new_width =
+      const newWidth =
         DateHelper.dateToPixel(
           item.end,
-          this.props.nowposition,
+          this.props.nowPosition,
           this.props.dayWidth,
-        ) - new_position;
+        ) - newPosition;
       result.push(
         <DataRow
           key={i}
@@ -92,11 +93,11 @@ export class DataViewPort extends Component {
           <DataTask
             item={item}
             label={item.name}
-            nowposition={this.props.nowposition}
+            nowPosition={this.props.nowPosition}
             dayWidth={this.props.dayWidth}
             color={item.color}
-            left={new_position}
-            width={new_width}
+            left={newPosition}
+            width={newWidth}
             height={this.props.itemheight}
             onChildDrag={this.onChildDrag}
             isSelected={this.props.selectedItem == item}
@@ -106,7 +107,6 @@ export class DataViewPort extends Component {
             onTaskChanging={this.props.onTaskChanging}
             onUpdateTask={this.props.onUpdateTask}
           >
-            {' '}
           </DataTask>
         </DataRow>,
       );

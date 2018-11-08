@@ -1,6 +1,7 @@
 const MIL_IN_HOUR = 1000 * 3600;
 class DateHelper {
-  dateToPixel(input, nowposition, daywidth) {
+  dateToPixel(input, nowPosition, dayWidth) {
+
     const nowDate = this.getToday(); //
     const inputTime = new Date(input);
 
@@ -8,13 +9,13 @@ class DateHelper {
     const lightSavingDiff =
       (inputTime.getTimezoneOffset() - nowDate.getTimezoneOffset()) * 60 * 1000;
     const timeDiff = inputTime.getTime() - nowDate.getTime() - lightSavingDiff;
-    const pixelWeight = daywidth / 24; // Value in pixels of one hour
-    return (timeDiff / MIL_IN_HOUR) * pixelWeight + nowposition;
+    const pixelWeight = dayWidth / 24; // Value in pixels of one hour
+    return (timeDiff / MIL_IN_HOUR) * pixelWeight + nowPosition;
   }
 
-  pixelToDate(position, nowposition, daywidth) {
-    const hoursInPixel = 24 / daywidth;
-    const pixelsFromNow = position - nowposition;
+  pixelToDate(position, nowPosition, dayWidth) {
+    const hoursInPixel = 24 / dayWidth;
+    const pixelsFromNow = position - nowPosition;
     const today = this.getToday();
     const milisecondsFromNow =
       today.getTime() + pixelsFromNow * hoursInPixel * MIL_IN_HOUR;

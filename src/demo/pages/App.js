@@ -102,29 +102,26 @@ class App extends Component {
         (item.start > start && item.start < end) ||
         (item.end > start && item.end < end),
     );
-    console.log('Calculating ');
+
     this.setState({ data: result });
   };
 
   onSelectItem = item => {
-    console.log(`Select Item ${item}`);
     this.setState({ selectedItem: item });
   };
 
   onUpdateTask = (item, props) => {
-    item.start = props.start;
-    item.end = props.end;
+    item.start = props.start || item.start;
+    item.end = props.end || item.start;
     this.setState({ data: [...this.state.data] });
-    console.log(`Update Item ${item}`);
   };
 
   onCreateLink = item => {
     const newLink = Generator.createLink(item.start, item.end);
     this.setState({ links: [...this.state.links, newLink] });
-    console.log(`Update Item ${item}`);
   };
 
-  getbuttonStyle(value) {
+  getButtonStyle(value) {
     return this.state.timelineMode == value
       ? { backgroundColor: 'grey', boder: 'solid 1px #223344' }
       : {};
@@ -171,7 +168,6 @@ class App extends Component {
   };
 
   delete = () => {
-    console.log('On delete');
     if (this.state.selectedItem) {
       let index = this.state.links.indexOf(this.state.selectedItem);
       if (index > -1) {
@@ -215,28 +211,28 @@ class App extends Component {
             <div
               className="mode-container-item mode-container-item-left"
               onClick={e => this.modeChange('day')}
-              style={this.getbuttonStyle('day')}
+              style={this.getButtonStyle('day')}
             >
               Day
             </div>
             <div
               className="mode-container-item"
               onClick={e => this.modeChange('week')}
-              style={this.getbuttonStyle('week')}
+              style={this.getButtonStyle('week')}
             >
               Week
             </div>
             <div
               className="mode-container-item"
               onClick={e => this.modeChange('month')}
-              style={this.getbuttonStyle('month')}
+              style={this.getButtonStyle('month')}
             >
               Month
             </div>
             <div
               className="mode-container-item mode-container-item-right"
               onClick={e => this.modeChange('year')}
-              style={this.getbuttonStyle('year')}
+              style={this.getButtonStyle('year')}
             >
               Year
             </div>

@@ -24,7 +24,6 @@ class App extends Component {
         (item.start > start && item.start < end) ||
         (item.end > start && item.end < end),
     );
-    console.log('Calculating ');
     this.setState({ timeLineData: result });
   };
 

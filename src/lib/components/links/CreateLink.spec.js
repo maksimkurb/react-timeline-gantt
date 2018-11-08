@@ -1,11 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import CreateLink from './CreateLink'
-
+import CreateLink from './CreateLink';
 
 describe('Testing Firing Events ', () => {
   it('Initialize Properly and not null pointer', () => {
-    let position = { x: 10, y: 10 };
+    const position = { x: 10, y: 10 };
     const wrapper = shallow(<CreateLink start={position} />);
     expect(wrapper.instance().lastX).toBe(-1);
     expect(wrapper.instance().lastY).toBe(-1);
@@ -14,11 +13,11 @@ describe('Testing Firing Events ', () => {
     expect(wrapper.instance().init).toBe(false);
   });
 
-
-    it('It handle mousmove and mouse up',()=>{
-        const onFinishCreateLink=jest.fn();
-        const position={x:10,y:10}
-        const wrapper =shallow(<CreateLink  start={position} onFinishCreateLink={onFinishCreateLink}/>);
+  it('It handle mousmove and mouse up', () => {
+    const onFinishCreateLink = jest.fn();
+    const position = { x: 10, y: 10 };
+    const wrapper = shallow(
+      <CreateLink start={position} onFinishCreateLink={onFinishCreateLink} />,
     );
     wrapper.instance().doMouseMove({ clientX: 1, clientY: 2 });
     expect(wrapper.instance().lastX).toBe(1);

@@ -53,6 +53,7 @@ module.exports = {
     'no-console': 1,
     'no-use-before-define': 0,
     'prefer-template': 2,
+    'react/no-multi-comp': 0,
     'react/prop-types': 2,
     'react/jsx-key': 2,
     'react/no-array-index-key': 1,

@@ -5,10 +5,10 @@ describe('Test DataController ', () => {
     const dataController = new DataController();
     const mockCallback = jest.fn();
     dataController.onHorizonChange = mockCallback;
-    // start,end,nowposition,daywidth
+    // start,end,nowPosition,daywidth
     dataController.initialize(0, 101, 2, 30);
-    expect(dataController.nowposition).toBe(2);
-    expect(dataController.daywidth).toBe(30);
+    expect(dataController.nowPosition).toBe(2);
+    expect(dataController.dayWidth).toBe(30);
     expect(dataController.lower_limit).toBe(-1000);
     expect(dataController.lower_data_limit).toBe(-750);
     expect(dataController.upper_limit).toBe(1101);
@@ -16,13 +16,13 @@ describe('Test DataController ', () => {
     expect(mockCallback.mock.calls.length).toBe(1);
     const lowerLimit = DateHelper.pixelToDate(
       dataController.lower_limit,
-      dataController.nowposition,
-      dataController.daywidth,
+      dataController.nowPosition,
+      dataController.dayWidth,
     );
     const upLimit = DateHelper.pixelToDate(
       dataController.upper_limit,
-      dataController.nowposition,
-      dataController.daywidth,
+      dataController.nowPosition,
+      dataController.dayWidth,
     );
     expect(mockCallback.mock.calls[0][0].getDay()).toBe(lowerLimit.getDay());
     expect(mockCallback.mock.calls[0][0].getMonth()).toBe(
@@ -36,7 +36,7 @@ describe('Test DataController ', () => {
     const dataController = new DataController();
     const mockCallback = jest.fn();
     dataController.onHorizonChange = mockCallback;
-    // start,end,nowposition,daywidth
+    // start,end,nowPosition,daywidth
     dataController.initialize(0, 100, 0, 30);
     dataController.setStartEnd(-100, 0, 0, 30);
     expect(mockCallback.mock.calls.length).toBe(1);

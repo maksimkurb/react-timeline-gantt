@@ -1,14 +1,13 @@
 import React from 'react';
-import DateHelper from 'libs/helpers/DateHelper';
-import { BUFFER_DAYS } from 'libs/Const';
 import {
+  BUFFER_DAYS,
   VIEW_MODE_DAY,
   VIEW_MODE_WEEK,
   VIEW_MODE_MONTH,
   VIEW_MODE_YEAR,
 } from 'libs/Const';
 import moment from 'moment';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import Headers from './Headers';
 
 describe('Header Init ', () => {
@@ -27,7 +26,7 @@ describe('Header Init ', () => {
       <Headers
         numVisibleDays={30}
         currentday={0}
-        nowposition={now}
+        nowPosition={now}
         dayWidth={dayWidth}
         mode={VIEW_MODE_YEAR}
         scrollLeft={0}
@@ -50,7 +49,7 @@ describe('Header Init ', () => {
       <Headers
         numVisibleDays={30}
         currentday={0}
-        nowposition={now}
+        nowPosition={now}
         dayWidth={dayWidth}
         mode={VIEW_MODE_MONTH}
         scrollLeft={0}

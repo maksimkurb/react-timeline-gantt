@@ -161,7 +161,7 @@ export default class LinkViewPort extends Component {
         </defs>
         <g
           transform={`matrix(1,0,0,1,${-(
-            this.props.scrollLeft - this.props.nowposition
+            this.props.scrollLeft - this.props.nowPosition
           )},${-this.props.scrollTop})`}
         >
           {this.cache}

@@ -33,7 +33,7 @@ describe('Testing LinksViewPort ', () => {
         startRow={0}
         endRow={0}
         data={data}
-        nowposition={0}
+        nowPosition={0}
         dayWidth={30}
         links={links}
       />,

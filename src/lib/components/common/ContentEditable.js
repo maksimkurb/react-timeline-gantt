@@ -41,42 +41,39 @@ export default class ContentEditable extends Component {
     this.setState({ value: e.target.value });
   };
 
-  renderDiv = () => {
-    return (
-      <div
-        tabIndex={this.props.index}
-        onClick={this.onFocus}
-        onFocus={this.onFocus}
-        style={{ width: '100%' }}
-      >
-        {' '}
-        {this.state.value}
-      </div>
-    );
-  };
+  renderDiv = () => (
+    <div
+      tabIndex={this.props.index}
+      onClick={this.onFocus}
+      onFocus={this.onFocus}
+      style={{ width: '100%' }}
+    >
+      {' '}
+      {this.state.value}
+    </div>
+  );
+
   shouldComponentUpdate(nextProps, nextState) {
-    if (nextProps.value != this.props.value) {
+    if (nextProps.value !== this.props.value) {
       this.state.value = nextProps.value;
     }
     return true;
   }
 
-  renderEditor = () => {
-
-        return <input
-ref='textInput' onBlur={this.onBlur} 
-                    style={{width:'100%',outlineColor:'black',outlineStyle: 'oinset'}}  
-                    type="text" 
-                    name="name" 
-                    value={this.state.value} 
-        onKeyUp={this.handleKey}
-        onChange={this.handleChange}
-      />
-    );
-  };
+  renderEditor = () => (
+    <input
+      ref="textInput"
+      onBlur={this.onBlur}
+      style={{ width: '100%', outlineColor: 'black', outlineStyle: 'oinset' }}
+      type="text"
+      name="name"
+      value={this.state.value}
+      onKeyUp={this.handleKey}
+      onChange={this.handleChange}
+    />
+  );
 
   render() {
     return this.state.editing ? this.renderEditor() : this.renderDiv();
-
-    }
+  }
 }

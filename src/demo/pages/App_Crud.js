@@ -81,7 +81,6 @@ class App extends Component {
   };
 
   onSelectItem = item => {
-    console.log(`Select Item ${item}`);
     this.setState({ selectedItem: item });
   };
 
@@ -97,7 +96,6 @@ class App extends Component {
   };
 
   delete = () => {
-    console.log('On delete');
     if (this.state.selectedItem) {
       let index = this.state.links.indexOf(this.state.selectedItem);
       if (index > -1) {

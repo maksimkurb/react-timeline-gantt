@@ -33,11 +33,11 @@ describe('Testing Firing Events ', () => {
     const onTaskChanging = jest.fn();
     const item = { name: 'this Item' };
     const dayWidth = 30;
-    const nowposition = 0;
+    const nowPosition = 0;
     const stopPropagation = jest.fn();
     const wrapper = shallow(
       <DataTask
-        nowposition={nowposition}
+        nowPosition={nowPosition}
         dayWidth={dayWidth}
         onChildDrag={onChildDrag}
         onUpdateTask={onUpdateTask}
@@ -81,8 +81,8 @@ describe('Testing Firing Events ', () => {
     expect(onChildDrag.mock.calls[1][0]).toBe(false);
     expect(onUpdateTask.mock.calls.length).toBe(1);
     expect(onUpdateTask.mock.calls[0][0]).toBe(item);
-    const new_start_date = DateHelper.pixelToDate(10, nowposition, dayWidth);
-    const new_end_date = DateHelper.pixelToDate(90, nowposition, dayWidth);
+    const new_start_date = DateHelper.pixelToDate(10, nowPosition, dayWidth);
+    const new_end_date = DateHelper.pixelToDate(90, nowPosition, dayWidth);
 
     expect(
       new_start_date.getTime() - onUpdateTask.mock.calls[0][1].start.getTime() <
@@ -99,10 +99,10 @@ describe('Testing Firing Events ', () => {
     const stopPropagation = jest.fn();
     const item = { name: 'this Item' };
     const dayWidth = 30;
-    const nowposition = 0;
+    const nowPosition = 0;
     const wrapper = shallow(
       <DataTask
-        nowposition={nowposition}
+        nowPosition={nowPosition}
         dayWidth={dayWidth}
         onChildDrag={onChildDrag}
         onUpdateTask={onUpdateTask}
@@ -152,8 +152,8 @@ describe('Testing Firing Events ', () => {
     expect(onChildDrag.mock.calls[1][0]).toBe(false);
     expect(onUpdateTask.mock.calls.length).toBe(1);
     expect(onUpdateTask.mock.calls[0][0]).toBe(item);
-    const new_start_date = DateHelper.pixelToDate(10, nowposition, dayWidth);
-    const new_end_date = DateHelper.pixelToDate(70, nowposition, dayWidth);
+    const new_start_date = DateHelper.pixelToDate(10, nowPosition, dayWidth);
+    const new_end_date = DateHelper.pixelToDate(70, nowPosition, dayWidth);
 
     expect(
       new_start_date.getTime() - onUpdateTask.mock.calls[0][1].start.getTime() <
@@ -169,11 +169,11 @@ describe('Testing Firing Events ', () => {
     const onTaskChanging = jest.fn();
     const item = { name: 'this Item' };
     const dayWidth = 30;
-    const nowposition = 0;
+    const nowPosition = 0;
     const stopPropagation = jest.fn();
     const wrapper = shallow(
       <DataTask
-        nowposition={nowposition}
+        nowPosition={nowPosition}
         dayWidth={dayWidth}
         onChildDrag={onChildDrag}
         onUpdateTask={onUpdateTask}
@@ -223,8 +223,8 @@ describe('Testing Firing Events ', () => {
     expect(onChildDrag.mock.calls[1][0]).toBe(false);
     expect(onUpdateTask.mock.calls.length).toBe(1);
     expect(onUpdateTask.mock.calls[0][0]).toBe(item);
-    const new_start_date = DateHelper.pixelToDate(0, nowposition, dayWidth);
-    const new_end_date = DateHelper.pixelToDate(90, nowposition, dayWidth);
+    const new_start_date = DateHelper.pixelToDate(0, nowPosition, dayWidth);
+    const new_end_date = DateHelper.pixelToDate(90, nowPosition, dayWidth);
 
     expect(
       new_start_date.getTime() - onUpdateTask.mock.calls[0][1].start.getTime() <
@@ -240,10 +240,10 @@ describe('Testing Firing Events ', () => {
     const stopPropagation = jest.fn();
     const item = { name: 'this Item' };
     const dayWidth = 30;
-    const nowposition = 0;
+    const nowPosition = 0;
     const wrapper = shallow(
       <DataTask
-        nowposition={nowposition}
+        nowPosition={nowPosition}
         dayWidth={dayWidth}
         onStartCreateLink={onStartCreateLink}
         item={item}
@@ -269,10 +269,10 @@ describe('Testing Firing Events ', () => {
     const stopPropagation = jest.fn();
     const item = { name: 'this Item' };
     const dayWidth = 30;
-    const nowposition = 0;
+    const nowPosition = 0;
     const wrapper = shallow(
       <DataTask
-        nowposition={nowposition}
+        nowPosition={nowPosition}
         dayWidth={dayWidth}
         onFinishCreateLink={onFinishCreateLink}
         item={item}

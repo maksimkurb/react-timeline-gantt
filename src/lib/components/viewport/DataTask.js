@@ -5,8 +5,9 @@ import {
   MODE_MOVE,
   MOVE_RESIZE_LEFT,
   MOVE_RESIZE_RIGHT,
+  LINK_POS_LEFT,
+  LINK_POS_RIGHT,
 } from 'libs/Const';
-import { LINK_POS_LEFT, LINK_POS_RIGHT } from 'libs/Const';
 import Config from 'libs/helpers/config/Config';
 
 export default class DataTask extends Component {
@@ -18,8 +19,7 @@ export default class DataTask extends Component {
       left: this.props.left,
       width: this.props.width,
       mode: MODE_NONE,
-    }
-
+    };
   }
 
   onCreateLinkMouseDown = (e, position) => {
@@ -28,14 +28,17 @@ export default class DataTask extends Component {
       this.props.onStartCreateLink(this.props.item, position);
     }
   };
+
   onCreateLinkMouseUp = (e, position) => {
     e.stopPropagation();
     this.props.onFinishCreateLink(this.props.item, position);
   };
+
   onCreateLinkTouchStart = (e, position) => {
     e.stopPropagation();
     this.props.onStartCreateLink(this.props.item, position);
   };
+
   onCreateLinkTouchEnd = (e, position) => {
     e.stopPropagation();
     this.props.onFinishCreateLink(this.props.item, position);
@@ -60,13 +63,14 @@ export default class DataTask extends Component {
     this.draggingPosition = x;
     this.setState({
       dragging: true,
-      mode: mode,
+      mode,
       left: this.props.left,
       width: this.props.width,
     });
   }
+
   dragProcess(x) {
-    let delta = this.draggingPosition - x;
+    const delta = this.draggingPosition - x;
     let newLeft = this.state.left;
     let newWidth = this.state.width;
 
@@ -81,34 +85,36 @@ export default class DataTask extends Component {
       case MOVE_RESIZE_RIGHT:
         newWidth = this.state.width - delta;
         break;
+      default:
     }
-    //the coordinates need to be global
-    let changeObj = {
+    // the coordinates need to be global
+    const changeObj = {
       item: this.props.item,
       position: {
-        start: newLeft - this.props.nowposition,
-        end: newLeft + newWidth - this.props.nowposition,
+        start: newLeft - this.props.nowPosition,
+        end: newLeft + newWidth - this.props.nowPosition,
       },
     };
     this.props.onTaskChanging(changeObj);
     this.setState({ left: newLeft, width: newWidth });
     this.draggingPosition = x;
   }
+
   dragEnd() {
     this.props.onChildDrag(false);
-    let new_start_date = DateHelper.pixelToDate(
+    const start = DateHelper.pixelToDate(
       this.state.left,
-      this.props.nowposition,
+      this.props.nowPosition,
       this.props.dayWidth,
     );
-    let new_end_date = DateHelper.pixelToDate(
+    const end = DateHelper.pixelToDate(
       this.state.left + this.state.width,
-      this.props.nowposition,
+      this.props.nowPosition,
       this.props.dayWidth,
     );
     this.props.onUpdateTask(this.props.item, {
-      start: new_start_date,
-      end: new_end_date,
+      start,
+      end,
     });
     this.setState({ dragging: false, mode: MODE_NONE });
   }
@@ -120,59 +126,65 @@ export default class DataTask extends Component {
       this.dragStart(e.clientX, mode);
     }
   };
+
   doMouseMove = e => {
     if (this.state.dragging) {
       e.stopPropagation();
       this.dragProcess(e.clientX);
     }
   };
+
   doMouseUp = () => {
     this.dragEnd();
   };
 
   doTouchStart = (e, mode) => {
     if (!this.props.onUpdateTask) return;
-    console.log('start');
     e.stopPropagation();
     this.dragStart(e.touches[0].clientX, mode);
   };
+
   doTouchMove = e => {
     if (this.state.dragging) {
-      console.log('move');
       e.stopPropagation();
       this.dragProcess(e.changedTouches[0].clientX);
     }
   };
+
   doTouchEnd = e => {
-    console.log('end');
     this.dragEnd();
   };
 
   calculateStyle() {
-    let configStyle = this.props.isSelected
+    const configStyle = this.props.isSelected
       ? Config.values.dataViewPort.task.selectedStyle
       : Config.values.dataViewPort.task.style;
-    let backgroundColor = this.props.color
+    const backgroundColor = this.props.color
       ? this.props.color
       : configStyle.backgroundColor;
 
-
-        if(this.state.dragging){
-            return {...configStyle,backgroundColor,left:this.state.left,width:this.state.width,height:this.props.height-5,top:2}
-      };
-    } else {
+    if (this.state.dragging) {
       return {
         ...configStyle,
         backgroundColor,
-        left: this.props.left,
-        width: this.props.width,
+        left: this.state.left,
+        width: this.state.width,
         height: this.props.height - 5,
         top: 2,
       };
     }
+    return {
+      ...configStyle,
+      backgroundColor,
+      left: this.props.left,
+      width: this.props.width,
+      height: this.props.height - 5,
+      top: 2,
+    };
   }
+
   render() {
-    let style = this.calculateStyle();
+    const style = this.calculateStyle();
     return (
       <div
         onMouseDown={e => this.doMouseDown(e, MODE_MOVE)}

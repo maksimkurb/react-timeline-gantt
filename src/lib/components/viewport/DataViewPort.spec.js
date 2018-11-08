@@ -28,9 +28,9 @@ describe('Testing DataRow ', () => {
   //     let onUpdateTask=jest.fn();
   //     let item={name:'this Item'}
   //     let dayWidth=30;
-  //     let nowposition=0;
+  //     let nowPosition=0;
   //     const wrapper =shallow(<DataTask
-  //                                 nowposition={nowposition}
+  //                                 nowPosition={nowPosition}
   //                                 dayWidth={dayWidth}
   //                                 onChildDrag={onChildDrag}
   //                                 onUpdateTask={onUpdateTask}
@@ -60,8 +60,8 @@ describe('Testing DataRow ', () => {
   //     expect(onChildDrag.mock.calls[1][0]).toBe(false)
   //     expect(onUpdateTask.mock.calls.length).toBe(1);
   //     expect(onUpdateTask.mock.calls[0][0]).toBe(item)
-  //     let new_start_date=DateHelper.pixelToDate(10,nowposition,dayWidth);
-  //     let new_end_date=DateHelper.pixelToDate(90,nowposition,dayWidth);
+  //     let new_start_date=DateHelper.pixelToDate(10,nowPosition,dayWidth);
+  //     let new_end_date=DateHelper.pixelToDate(90,nowPosition,dayWidth);
 
   //     expect(new_start_date.getTime()-onUpdateTask.mock.calls[0][1].start.getTime()<10).toBe(true)
   //     expect(new_end_date.getTime()-onUpdateTask.mock.calls[0][1].end.getTime()<10).toBe(true)

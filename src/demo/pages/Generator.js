@@ -34,14 +34,14 @@ class Generator {
     return { data, links };
   }
 
-  addRecord(starDate, i, result) {
-    const endDate = new Date(starDate.getTime());
-    endDate.setDate(starDate.getDate() + Math.random() * 20);
+  addRecord(startDate, i, result) {
+    const endDate = new Date(startDate.getTime());
+    endDate.setDate(startDate.getDate() + Math.random() * 20);
     const id = ObjectHelper.genID();
     const record = {
       id,
       name: `Task ${i}`,
-      start: starDate,
+      start: startDate,
       end: endDate,
       color: this.getRandomColor(),
     };
@@ -72,7 +72,7 @@ class Generator {
     };
   }
 
-  randomDate(start, end) {
+    randomDate(start, end) {
     return new Date(
       start.getTime() + Math.random() * (end.getTime() - start.getTime()),
     );

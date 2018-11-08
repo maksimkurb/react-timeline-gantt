@@ -15,7 +15,7 @@
   },
   "peerDependencies": {
     "css-layout": "^1.1.1",
-    "moment": "^2.22.1",
+    "moment": "^2.22.2",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-sizeme": "^2.5.2"
@@ -45,8 +45,8 @@
     "jest-junit": "^5.0.0",
     "json-loader": "^0.5.7",
     "prettier": "^1.15.1",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
+    "react": "^16.6.1",
+    "react-dom": "^16.6.1",
     "react-test-renderer": "^16.4.0",
     "style-loader": "^0.21.0",
     "uglifyjs-webpack-plugin": "^1.2.7",

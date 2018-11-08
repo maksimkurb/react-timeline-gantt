@@ -38,8 +38,8 @@ class TimeLine extends Component {
     // Initialising state
     this.state = {
       currentday: 0, // Day that is in the 0px horizontal
-      // nowposition is the reference position, this variable support the infinit scrolling by accumulatning scroll times and redefining the 0 position
-      // if we accumulat 2 scroll to the left nowposition will be 2* DATA_CONTAINER_WIDTH
+      // nowPosition is the reference position, this variable support the infinit scrolling by accumulatning scroll times and redefining the 0 position
+      // if we accumulat 2 scroll to the left nowPosition will be 2* DATA_CONTAINER_WIDTH
       nowPosition: 0,
       startRow: 0, //
       endRow: 10,
@@ -161,11 +161,12 @@ class TimeLine extends Component {
 
     // Calculating if we need to roll up the scroll
     if (newScrollLeft > this.pxToScroll) {
-      // ContenLegnth-viewportLengt
+      // ContenLegnth-viewportLength
       newNowPosition = this.state.nowPosition - this.pxToScroll;
       newLeft = 0;
     } else if (newScrollLeft <= 0) {
-      // ContenLegnth-viewportLengt
+      // ContenLegnth-viewportLength
+      console.log(this.pxToScroll);
       newNowPosition = this.state.nowPosition + this.pxToScroll;
       newLeft = this.pxToScroll;
     } else {
@@ -197,7 +198,7 @@ class TimeLine extends Component {
   };
 
   calculateVerticalScrollVariables = size => {
-    // The pixel to scroll verically is equal to the pecentage of what the viewport represent in the context multiply by the context width
+    // The pixel to scroll vertically is equal to the percentage of what the viewport represent in the context multiply by the context width
     this.pxToScroll =
       (1 - size.width / DATA_CONTAINER_WIDTH) * DATA_CONTAINER_WIDTH - 1;
   };
@@ -334,7 +335,7 @@ class TimeLine extends Component {
     }
   }
 
-  checkNeeeData = () => {
+  checkNeedData = () => {
     if (this.props.data !== this.state.data) {
       this.state.data = this.props.data;
       const rowInfo = this.calculateStartEndRows(
@@ -354,7 +355,7 @@ class TimeLine extends Component {
 
   render() {
     this.checkMode();
-    this.checkNeeeData();
+    this.checkNeedData();
     return (
       <div className="timeLine">
         <div className="timeLine-side-main" style={this.state.sideStyle}>
@@ -378,7 +379,7 @@ class TimeLine extends Component {
             headerData={this.state.headerData}
             numVisibleDays={this.state.numVisibleDays}
             currentday={this.state.currentday}
-            nowposition={this.state.nowPosition}
+            nowPosition={this.state.nowPosition}
             dayWidth={this.state.dayWidth}
             mode={this.state.mode}
             scrollLeft={this.state.scrollLeft}
@@ -390,7 +391,7 @@ class TimeLine extends Component {
             scrollLeft={this.state.scrollLeft}
             scrollTop={this.state.scrollTop}
             itemheight={this.props.itemheight}
-            nowposition={this.state.nowPosition}
+            nowPosition={this.state.nowPosition}
             startRow={this.state.startRow}
             endRow={this.state.endRow}
             data={this.props.data}
@@ -422,7 +423,7 @@ class TimeLine extends Component {
             startRow={this.state.startRow}
             endRow={this.state.endRow}
             data={this.props.data}
-            nowposition={this.state.nowPosition}
+            nowPosition={this.state.nowPosition}
             dayWidth={this.state.dayWidth}
             interactiveMode={this.state.interactiveMode}
             taskToCreate={this.state.taskToCreate}
@@ -445,7 +446,7 @@ TimeLine.propTypes = {
   config: PropTypes.object,
   data: PropTypes.array,
   links: PropTypes.array,
-  selectedItem: PropTypes.number,
+  selectedItem: PropTypes.object,
 
   onSelectItem: PropTypes.func,
   onCreateLink: PropTypes.func,
