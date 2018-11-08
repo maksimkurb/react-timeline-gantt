@@ -1,7 +1,6 @@
 const MIL_IN_HOUR = 1000 * 3600;
 class DateHelper {
   dateToPixel(input, nowPosition, dayWidth) {
-
     const nowDate = this.getToday(); //
     const inputTime = new Date(input);
 

@@ -166,7 +166,6 @@ class TimeLine extends Component {
       newLeft = 0;
     } else if (newScrollLeft <= 0) {
       // ContenLegnth-viewportLength
-      console.log(this.pxToScroll);
       newNowPosition = this.state.nowPosition + this.pxToScroll;
       newLeft = this.pxToScroll;
     } else {

@@ -5,27 +5,18 @@ import DateHelper from 'libs/helpers/DateHelper';
 import sizeMe from 'react-sizeme';
 import Config from 'libs/helpers/config/Config';
 
-export class DataRow extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div
-        className="timeLine-main-data-row"
-        style={{
-          ...Config.values.dataViewPort.rows.style,
-          top: this.props.top,
-          height: this.props.itemheight,
-        }}
-      >
-        {this.props.children}
-      </div>
-    );
-  }
-}
-
+export const DataRow = ({ top, itemheight, children }) => (
+  <div
+    className="timeLine-main-data-row"
+    style={{
+      ...Config.values.dataViewPort.rows.style,
+      top,
+      height: itemheight,
+    }}
+  >
+    {children}
+  </div>
+);
 export class DataViewPort extends Component {
   constructor(props) {
     super(props);
@@ -33,8 +24,8 @@ export class DataViewPort extends Component {
   }
 
   getContainerHeight(rows) {
-    const new_height = rows > 0 ? rows * this.props.itemheight : 10;
-    return new_height;
+    const height = rows > 0 ? rows * this.props.itemheight : 10;
+    return height;
   }
 
   onChildDrag = dragging => {
@@ -100,14 +91,13 @@ export class DataViewPort extends Component {
             width={newWidth}
             height={this.props.itemheight}
             onChildDrag={this.onChildDrag}
-            isSelected={this.props.selectedItem == item}
+            isSelected={this.props.selectedItem === item}
             onSelectItem={this.props.onSelectItem}
             onStartCreateLink={this.props.onStartCreateLink}
             onFinishCreateLink={this.props.onFinishCreateLink}
             onTaskChanging={this.props.onTaskChanging}
             onUpdateTask={this.props.onUpdateTask}
-          >
-          </DataTask>
+          />
         </DataRow>,
       );
     }
@@ -150,6 +140,7 @@ export class DataViewPort extends Component {
         ref="dataViewPort"
         id="timeLinedataViewPort"
         className="timeLine-main-data-viewPort"
+        draggable="true"
         onMouseDown={this.doMouseDown}
         onMouseMove={this.doMouseMove}
         onMouseUp={this.props.onMouseUp}

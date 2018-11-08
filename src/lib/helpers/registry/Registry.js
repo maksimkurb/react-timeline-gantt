@@ -15,21 +15,17 @@ class Registry {
   registerLinks(list) {
     if (!list) return;
     this.link = {};
-    let start = 0;
-    let end = 0;
 
     for (let i = 0; i < list.length; i++) {
-      start = list[i].start;
-      end = list[i].end;
       const value = { link: list[i], index: i };
-      this.createAddTo(start, this.link, value, i);
-      this.createAddTo(end, this.link, value, i);
+      this.createAddTo(list[i].start, this.link, value, i);
+      this.createAddTo(list[i].end, this.link, value, i);
     }
   }
 
   createAddTo(id, list, value, index) {
     if (!list[id]) list[id] = [];
-    if (list[id].indexOf(value) == -1) list[id].push(value);
+    if (list[id].indexOf(value) === -1) list[id].push(value);
   }
 
   getTask(id) {

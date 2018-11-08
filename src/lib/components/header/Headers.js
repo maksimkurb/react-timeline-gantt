@@ -72,15 +72,11 @@ export default class Header extends PureComponent {
   }
 
   getStartDate = (date, mode) => {
-    let year = null;
     switch (mode) {
       case 'year':
-        year = date.year();
-        return moment([year, 0, 1]);
+        return moment([date.year(), 0, 1]);
       case 'month':
-        year = date.year();
-        const month = date.month();
-        return moment([year, month, 1]);
+        return moment([date.year(), date.month(), 1]);
       case 'week':
         return date.subtract(date.day(), 'days');
       default:
@@ -98,7 +94,7 @@ export default class Header extends PureComponent {
           key={i}
           left={iterLeft}
           width={hourWidth}
-          label={mode == 'shorttime' ? i : `${i}:00`}
+          label={mode === 'shorttime' ? i : `${i}:00`}
         />,
       );
       iterLeft += hourWidth;
@@ -113,19 +109,20 @@ export default class Header extends PureComponent {
 
   getBox(date, mode, lastLeft) {
     const increment = this.getModeIncrement(date, mode) * this.props.dayWidth;
-    if (!lastLeft) {
+    let left = lastLeft;
+    if (!left) {
       let starDate = this.getStartDate(date, mode);
       starDate = starDate.startOf('day');
       const now = moment().startOf('day');
       const daysInBetween = starDate.diff(now, 'days');
-      lastLeft = DateHelper.dayToPosition(
+      left = DateHelper.dayToPosition(
         daysInBetween,
         this.props.nowPosition,
         this.props.dayWidth,
       );
     }
 
-    return { left: lastLeft, width: increment };
+    return { left, width: increment };
   }
 
   renderHeaderRows = (top, middle, bottom) => {
@@ -143,7 +140,7 @@ export default class Header extends PureComponent {
     for (let i = start - BUFFER_DAYS; i < end + BUFFER_DAYS; i++) {
       // The unit of iteration is day
       currentDate = moment().add(i, 'days');
-      if (currentTop != currentDate.format(this.getFormat(top, 'top'))) {
+      if (currentTop !== currentDate.format(this.getFormat(top, 'top'))) {
         currentTop = currentDate.format(this.getFormat(top, 'top'));
         box = this.getBox(currentDate, top, lastLeft.top);
         lastLeft.top = box.left + box.width;
@@ -157,7 +154,7 @@ export default class Header extends PureComponent {
         );
       }
 
-      if (currentMiddle != currentDate.format(this.getFormat(middle))) {
+      if (currentMiddle !== currentDate.format(this.getFormat(middle))) {
         currentMiddle = currentDate.format(this.getFormat(middle));
         box = this.getBox(currentDate, middle, lastLeft.middle);
         lastLeft.middle = box.left + box.width;
@@ -171,11 +168,11 @@ export default class Header extends PureComponent {
         );
       }
 
-      if (currentBottom != currentDate.format(this.getFormat(bottom))) {
+      if (currentBottom !== currentDate.format(this.getFormat(bottom))) {
         currentBottom = currentDate.format(this.getFormat(bottom));
         box = this.getBox(currentDate, bottom, lastLeft.bottom);
         lastLeft.bottom = box.left + box.width;
-        if (bottom == 'shorttime' || bottom == 'fulltime') {
+        if (bottom === 'shorttime' || bottom === 'fulltime') {
           result.bottom.push(this.renderTime(box.left, box.width, bottom, i));
         } else {
           result.bottom.push(
@@ -188,36 +185,33 @@ export default class Header extends PureComponent {
           );
         }
       }
-
-      return (
-        <div
-          className="timeLine-main-header-container"
-          style={{
-            width: DATA_CONTAINER_WIDTH,
-            maxWidth: DATA_CONTAINER_WIDTH,
-          }}
-        >
-          <div
-            className="header-top"
-            style={{ ...Config.values.header.top.style }}
-          >
-            {result.top}
-          </div>
-          <div
-            className="header-middle"
-            style={{ ...Config.values.header.middle.style }}
-          >
-            {result.middle}
-          </div>
-          <div
-            className="header-bottom"
-            style={{ ...Config.values.header.bottom.style }}
-          >
-            {result.bottom}
-          </div>
-        </div>
-      );
     }
+
+    return (
+      <div
+        className="timeLine-main-header-container"
+        style={{ width: DATA_CONTAINER_WIDTH, maxWidth: DATA_CONTAINER_WIDTH }}
+      >
+        <div
+          className="header-top"
+          style={{ ...Config.values.header.top.style }}
+        >
+          {result.top}
+        </div>
+        <div
+          className="header-middle"
+          style={{ ...Config.values.header.middle.style }}
+        >
+          {result.middle}
+        </div>
+        <div
+          className="header-bottom"
+          style={{ ...Config.values.header.bottom.style }}
+        >
+          {result.bottom}
+        </div>
+      </div>
+    );
   };
 
   renderHeader = () => {
@@ -230,6 +224,8 @@ export default class Header extends PureComponent {
         return this.renderHeaderRows('month', 'dayweek', 'daymonth');
       case VIEW_MODE_YEAR:
         return this.renderHeaderRows('year', 'month', 'week');
+      default:
+        return null;
     }
   };
 
@@ -243,8 +239,8 @@ export default class Header extends PureComponent {
     this.props.currentday + this.props.numVisibleDays > this.end;
 
   render() {
-    if (this.refs.Header) this.refs.Header.scrollLeft = this.props.scrollLeft;
-    // Check boundaries to see if wee need to recalcualte header
+    if (this.header) this.header.scrollLeft = this.props.scrollLeft;
+    // Check boundaries to see if wee need to recalculate header
     // if (this.needToRender()|| !this.cache){
     //     this.cache=this.renderHeader();
     //     this.setBoundaries();
@@ -252,7 +248,9 @@ export default class Header extends PureComponent {
     return (
       <div
         id="timeline-header"
-        ref="Header"
+        ref={r => {
+          this.header = r;
+        }}
         className="timeLine-main-header-viewPort"
       >
         {this.renderHeader()}
