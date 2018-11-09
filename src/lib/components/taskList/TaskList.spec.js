@@ -8,7 +8,7 @@ describe('Testing Firing Events ', () => {
   });
 
   it('It render and interact properly', () => {
-    const itemheight = 30;
+    const itemHeight = 30;
     const data = [];
     const onSelectItem = jest.fn();
     for (let i = 0; i < 20; i++) {
@@ -25,17 +25,17 @@ describe('Testing Firing Events ', () => {
         startRow={0}
         endRow={17}
         onSelectItem={onSelectItem}
-        itemheight={itemheight}
+        itemHeight={itemHeight}
       />,
     );
     expect(wrapper.instance().containerStyle.height).toBe(
-      itemheight * data.length,
+      itemHeight * data.length,
     );
 
     expect(wrapper.find('.timeLine-side-task-row')).toHaveLength(18);
     let count = 0;
     wrapper.find('.timeLine-side-task-row').forEach(node => {
-      expect(node.props().style.top).toBe(count * itemheight);
+      expect(node.props().style.top).toBe(count * itemHeight);
       node.simulate('click');
       count += 1;
     });

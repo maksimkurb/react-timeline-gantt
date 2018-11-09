@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import VerticalSpliter from 'libs/components/taskList/VerticalSpliter';
+import VerticalSplitter from 'libs/components/taskList/VerticalSplitter';
 import Header from 'libs/components/header/Headers';
 import DataViewPort from 'libs/components/viewport/DataViewPort';
 import LinkViewPort from 'libs/components/links/LinkViewPort';
@@ -94,7 +94,7 @@ class TimeLine extends Component {
       this.initialize = true;
     }
     this.setStartEnd();
-    const newNumVisibleRows = Math.ceil(size.height / this.props.itemheight);
+    const newNumVisibleRows = Math.ceil(size.height / this.props.itemHeight);
     const newNumVisibleDays = this.calcNumVisibleDays(size);
 
     this.setState(state => {
@@ -135,7 +135,7 @@ class TimeLine extends Component {
   };
 
   calculateStartEndRows = (numVisibleRows, data, scrollTop) => {
-    const newStart = Math.trunc(scrollTop / this.props.itemheight);
+    const newStart = Math.trunc(scrollTop / this.props.itemHeight);
     const newEnd =
       newStart + numVisibleRows >= data.length
         ? data.length
@@ -178,7 +178,7 @@ class TimeLine extends Component {
     );
 
     // Calculate rows to render
-    newStartRow = Math.trunc(this.state.scrollTop / this.props.itemheight);
+    newStartRow = Math.trunc(this.state.scrollTop / this.props.itemHeight);
     newEndRow =
       newStartRow + this.state.numVisibleRows >= this.props.data.length
         ? this.props.data.length - 1
@@ -362,7 +362,7 @@ class TimeLine extends Component {
             ref={r => {
               this.taskViewPort = r;
             }}
-            itemheight={this.props.itemheight}
+            itemHeight={this.props.itemHeight}
             startRow={this.state.startRow}
             endRow={this.state.endRow}
             data={this.props.data}
@@ -371,7 +371,7 @@ class TimeLine extends Component {
             onUpdateTask={this.props.onUpdateTask}
             onScroll={this.verticalChange}
           />
-          <VerticalSpliter onTaskListSizing={this.onTaskListSizing} />
+          <VerticalSplitter onTaskListSizing={this.onTaskListSizing} />
         </div>
         <div className="timeLine-main">
           <Header
@@ -389,7 +389,7 @@ class TimeLine extends Component {
             }}
             scrollLeft={this.state.scrollLeft}
             scrollTop={this.state.scrollTop}
-            itemheight={this.props.itemheight}
+            itemHeight={this.props.itemHeight}
             nowPosition={this.state.nowPosition}
             startRow={this.state.startRow}
             endRow={this.state.endRow}
@@ -430,7 +430,7 @@ class TimeLine extends Component {
             changingTask={this.state.changingTask}
             selectedItem={this.props.selectedItem}
             onSelectItem={this.onSelectItem}
-            itemheight={this.props.itemheight}
+            itemHeight={this.props.itemHeight}
             links={this.props.links}
           />
         </div>
@@ -440,7 +440,7 @@ class TimeLine extends Component {
 }
 
 TimeLine.propTypes = {
-  itemheight: PropTypes.number,
+  itemHeight: PropTypes.number,
   mode: PropTypes.oneOf(['day', 'week', 'month', 'year']),
   config: PropTypes.object,
   data: PropTypes.array,
@@ -454,7 +454,7 @@ TimeLine.propTypes = {
 };
 
 TimeLine.defaultProps = {
-  itemheight: 20,
+  itemHeight: 20,
 };
 
 export default TimeLine;

@@ -6,7 +6,7 @@ import { DataViewPort, DataRow } from './DataTask';
 describe('Testing DataRow ', () => {
   it('Initialize Properly and calculate style', () => {
     // const wrapper =mount(<DataRow top={10}
-    // itemheight={30}/>);
+    // itemHeight={30}/>);
     // expect(wrapper.instance().style.top).toBe(10)
     // expect(wrapper.instance().style.height).toBe(30)
   });

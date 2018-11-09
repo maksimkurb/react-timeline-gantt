@@ -10,13 +10,13 @@ VerticalLine.propTypes = {
   left: PropTypes.number.isRequired,
 };
 
-const TaskRow = ({ top, itemheight, item, label, onSelectItem }) => (
+const TaskRow = ({ top, itemHeight, item, label, onSelectItem }) => (
   <div
     className="timeLine-side-task-row"
     style={{
       ...Config.values.taskList.task.style,
       top,
-      height: itemheight,
+      height: itemHeight,
     }}
     role="button"
     tabIndex={0}
@@ -29,7 +29,7 @@ const TaskRow = ({ top, itemheight, item, label, onSelectItem }) => (
 
 export default class TaskList extends Component {
   getContainerStyle(rows) {
-    const height = rows > 0 ? rows * this.props.itemheight : 10;
+    const height = rows > 0 ? rows * this.props.itemHeight : 10;
     return { height };
   }
 
@@ -44,8 +44,8 @@ export default class TaskList extends Component {
           index={i}
           item={item}
           label={item.name}
-          top={i * this.props.itemheight}
-          itemheight={this.props.itemheight}
+          top={i * this.props.itemHeight}
+          itemHeight={this.props.itemHeight}
           isSelected={this.props.selectedItem == item}
           onUpdateTask={this.props.onUpdateTask}
           onSelectItem={this.props.onSelectItem}

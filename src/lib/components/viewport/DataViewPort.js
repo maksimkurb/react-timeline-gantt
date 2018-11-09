@@ -5,13 +5,13 @@ import DateHelper from 'libs/helpers/DateHelper';
 import sizeMe from 'react-sizeme';
 import Config from 'libs/helpers/config/Config';
 
-export const DataRow = ({ top, itemheight, children }) => (
+export const DataRow = ({ top, itemHeight, children }) => (
   <div
     className="timeLine-main-data-row"
     style={{
       ...Config.values.dataViewPort.rows.style,
       top,
-      height: itemheight,
+      height: itemHeight,
     }}
   >
     {children}
@@ -24,7 +24,7 @@ export class DataViewPort extends Component {
   }
 
   getContainerHeight(rows) {
-    const height = rows > 0 ? rows * this.props.itemheight : 10;
+    const height = rows > 0 ? rows * this.props.itemHeight : 10;
     return height;
   }
 
@@ -77,9 +77,9 @@ export class DataViewPort extends Component {
         <DataRow
           key={i}
           label={item.name}
-          top={i * this.props.itemheight}
+          top={i * this.props.itemHeight}
           left={20}
-          itemheight={this.props.itemheight}
+          itemHeight={this.props.itemHeight}
         >
           <DataTask
             item={item}
@@ -89,7 +89,7 @@ export class DataViewPort extends Component {
             color={item.color}
             left={newPosition}
             width={newWidth}
-            height={this.props.itemheight}
+            height={this.props.itemHeight}
             onChildDrag={this.onChildDrag}
             isSelected={this.props.selectedItem === item}
             onSelectItem={this.props.onSelectItem}

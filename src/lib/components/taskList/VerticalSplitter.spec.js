@@ -1,9 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import VerticalSpliter from './VerticalSpliter';
+import VerticalSplitter from './VerticalSplitter';
 describe('Testing Firing Events ', () => {
   it('Initialize Properly', () => {
-    const wrapper = shallow(<VerticalSpliter />);
+    const wrapper = shallow(<VerticalSplitter />);
 
     expect(wrapper.state().dragging).toBe(false);
     expect(wrapper.find('.squareGrip')).toHaveLength(4);
@@ -13,7 +13,7 @@ describe('Testing Firing Events ', () => {
     const mockCallback = jest.fn();
     const stopPropagation = jest.fn();
     const wrapper = shallow(
-      <VerticalSpliter onTaskListSizing={mockCallback} />,
+      <VerticalSplitter onTaskListSizing={mockCallback} />,
     );
 
     expect(wrapper.state().dragging).toBe(false);

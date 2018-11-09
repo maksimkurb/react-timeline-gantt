@@ -11,7 +11,7 @@ describe('TimeLine Initialization ', () => {
   });
 
   it('Initialize on Size', () => {
-    const itemheight = 30;
+    const itemHeight = 30;
     const data = [
       {
         name: `Task Today`,
@@ -22,7 +22,7 @@ describe('TimeLine Initialization ', () => {
     ];
     const onNeedData = () => data;
     const wrapper = shallow(
-      <TimeLine data={data} itemheight={itemheight} onNeedData={onNeedData} />,
+      <TimeLine data={data} itemHeight={itemHeight} onNeedData={onNeedData} />,
     );
     // This needs to be improve
     expect(wrapper.state().currentday).toBe(0);
@@ -36,7 +36,7 @@ describe('TimeLine Initialization ', () => {
     wrapper.instance().onSize({ width: 500, height: 500 });
     expect(wrapper.instance().initialize).toBe(true);
     expect(wrapper.state().startRow).toBe(0);
-    expect(wrapper.state().numVisibleRows).toBe(Math.ceil(500 / itemheight));
+    expect(wrapper.state().numVisibleRows).toBe(Math.ceil(500 / itemHeight));
     expect(wrapper.state().numVisibleDays).toBe(
       Math.ceil(500 / 24) + BUFFER_DAYS,
     );
@@ -44,7 +44,7 @@ describe('TimeLine Initialization ', () => {
       (1 - 500 / DATA_CONTAINER_WIDTH) * DATA_CONTAINER_WIDTH - 1,
     );
     wrapper.instance().onSize({ width: 500, height: 1000 });
-    expect(wrapper.state().numVisibleRows).toBe(Math.ceil(1000 / itemheight));
+    expect(wrapper.state().numVisibleRows).toBe(Math.ceil(1000 / itemHeight));
     expect(wrapper.state().endRow).toBe(1);
   });
 });
@@ -57,7 +57,7 @@ describe('TimeLine Scroll left ', () => {
   });
 
   it('Render and handle mouse move right and Right', () => {
-    const itemheight = 30;
+    const itemHeight = 30;
 
     const data = [
       {
@@ -71,7 +71,7 @@ describe('TimeLine Scroll left ', () => {
     const wrapper = mount(
       <TimeLine
         data={data}
-        itemheight={itemheight}
+        itemHeight={itemHeight}
         links={[]}
         onNeedData={onNeedData}
       />,
@@ -116,7 +116,7 @@ describe('TimeLine Scroll left ', () => {
 
 describe('TimeLine Scroll Up ', () => {
   it('Calculate Num of visible rows properly', () => {
-    const itemheight = 30;
+    const itemHeight = 30;
 
     const data = [];
     for (let i = 0; i < 20; i++) {
@@ -129,14 +129,14 @@ describe('TimeLine Scroll Up ', () => {
     }
     const onNeedData = () => data;
     const wrapper = shallow(
-      <TimeLine data={data} itemheight={itemheight} onNeedData={onNeedData} />,
+      <TimeLine data={data} itemHeight={itemHeight} onNeedData={onNeedData} />,
     );
     wrapper.instance().onSize({ width: 500, height: 500 });
     expect(wrapper.state().nowPosition).toBe(0);
     expect(wrapper.state().scrollTop).toBe(0);
     expect(wrapper.state().startRow).toBe(0);
     expect(wrapper.state().endRow).toBe(17);
-    const numVisibleRows = Math.ceil(500 / itemheight);
+    const numVisibleRows = Math.ceil(500 / itemHeight);
     expect(wrapper.state().numVisibleRows).toBe(numVisibleRows);
     // Test moving 10
     wrapper.instance().verticalChange(10);
@@ -168,7 +168,7 @@ describe('TimeLine Scroll Up ', () => {
 
 describe('Testing onTaskListSizing ', () => {
   it('recalculate width properly whe moving vertical Bar', () => {
-    const itemheight = 30;
+    const itemHeight = 30;
     const data = [];
     for (let i = 0; i < 20; i++) {
       data.push({
@@ -180,7 +180,7 @@ describe('Testing onTaskListSizing ', () => {
     }
     const onNeedData = () => data;
     const wrapper = shallow(
-      <TimeLine data={data} itemheight={itemheight} onNeedData={onNeedData} />,
+      <TimeLine data={data} itemHeight={itemHeight} onNeedData={onNeedData} />,
     );
     wrapper.instance().onSize({ width: 500, height: 500 });
     expect(wrapper.state().sideStyle.width).toBe(200);
@@ -193,7 +193,7 @@ describe('Testing onTaskListSizing ', () => {
 
 describe('Testing Mode change ', () => {
   it('It change mode properly when the component has not scroll ', () => {
-    const itemheight = 30;
+    const itemHeight = 30;
     const data = [];
     for (let i = 0; i < 20; i++) {
       data.push({
@@ -205,7 +205,7 @@ describe('Testing Mode change ', () => {
     }
     const onNeedData = () => data;
     const wrapper = shallow(
-      <TimeLine data={data} itemheight={itemheight} onNeedData={onNeedData} />,
+      <TimeLine data={data} itemHeight={itemHeight} onNeedData={onNeedData} />,
     );
     wrapper.instance().onSize({ width: 500, height: 500 });
     expect(wrapper.state().nowPosition).toBe(0);
@@ -229,7 +229,7 @@ describe('Testing Mode change ', () => {
   });
 
   it('It change mode properly when the component has scroll left', () => {
-    const itemheight = 30;
+    const itemHeight = 30;
     const data = [];
     for (let i = 0; i < 20; i++) {
       data.push({
@@ -241,7 +241,7 @@ describe('Testing Mode change ', () => {
     }
     const onNeedData = () => data;
     const wrapper = shallow(
-      <TimeLine data={data} itemheight={itemheight} onNeedData={onNeedData} />,
+      <TimeLine data={data} itemHeight={itemHeight} onNeedData={onNeedData} />,
     );
     wrapper.instance().onSize({ width: 500, height: 500 });
     wrapper.instance().doMouseDown({ clientX: 0 });
