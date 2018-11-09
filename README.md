@@ -1,6 +1,9 @@
 
 
-# react-gantt-timeline
+# react-yagt (Yet Another Gantt Table)
+Based on [react-timeline-gantt](https://github.com/guiqui/react-timeline-gantt)
+**Alpha version, not ready for production yet**
+
 [![npm](https://img.shields.io/npm/v/react-gantt-timeline.svg?style=flat-square)](http://npm.im/react-gantt-timeline)
 [![MIT License](https://img.shields.io/npm/l/react-list.svg?style=flat-square)](http://opensource.org/licenses/MIT)
 [![Travis](https://travis-ci.org/guiqui/react-timeline-gantt.svg?branch=master)](https://travis-ci.org/guiqui/react-timeline-gantt)
@@ -13,7 +16,7 @@
 
 A react timeline gantt component.
 
-![screencast](https://guiqui.github.io/react-timeline-gantt/demo.gif)
+![screencast](https://maksimkurb.github.io/react-timeline-gantt/demo.gif)
 
 ## About
 React-timeline-gantt is a component built to display and manage calendar gantt charts.
@@ -32,24 +35,16 @@ The component is capable of:
 
  To watch a demo take a look at [video](https://youtu.be/ASGD1FXOafw) that shows how to use the component.
  
- To play with a live [demo](https://guiqui.github.io/react-timeline-gantt/index.html) .
+ To play with a live [demo](https://maksimkurb.github.io/react-timeline-gantt/) .
 
-
-## Release Notes version 0.3.9
-- Better and optimize header
-- Add "year" mode option.
-
-## Coming up in version 0.4.0
-- Subtask implementation
-- Add start and end date columns to the task list
-- Beter UX to create links
-- Scroll up/donw in viewPort
 
 ## Installation
 ```javascript
-npm install react-gantt-timeline
+yarn add react-gantt-timeline 
+
+# Peer deps:
+yarn add moment react-sizeme
 ```
-The component has the following dependencies: moment, react-sizeme
 
 ## Getting started
 The first thing to once the component has been install and all it dependencies is create the data that the timeline component consume.The time line has two data providers **data** and **links**.
@@ -209,35 +204,3 @@ Here is a demo:
 | Property      | value   | Descriptions                        |
 | ------------- |:-------:| -----------------------------------:|
 | mode          | string    |set the zoom level.The possible values are:"month","week","day","year"  |   |
-
-
-
-## Contributors
-
-This project exists thanks to all the people who contribute. 
-<a href="https://github.com/guiqui/react-timeline-gantt/contributors"><img src="https://opencollective.com/react-timeline-gantt/contributors.svg?width=890&button=false" /></a>
-
-
-## Backers
-
-Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/react-timeline-gantt#backer)]
-
-<a href="https://opencollective.com/react-timeline-gantt#backers" target="_blank"><img src="https://opencollective.com/react-timeline-gantt/backers.svg?width=890"></a>
-
-
-## Sponsors
-
-Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/react-timeline-gantt#sponsor)]
-
-<a href="https://opencollective.com/react-timeline-gantt/sponsor/0/website" target="_blank"><img src="https://opencollective.com/react-timeline-gantt/sponsor/0/avatar.svg"></a>
-<a href="https://opencollective.com/react-timeline-gantt/sponsor/1/website" target="_blank"><img src="https://opencollective.com/react-timeline-gantt/sponsor/1/avatar.svg"></a>
-<a href="https://opencollective.com/react-timeline-gantt/sponsor/2/website" target="_blank"><img src="https://opencollective.com/react-timeline-gantt/sponsor/2/avatar.svg"></a>
-<a href="https://opencollective.com/react-timeline-gantt/sponsor/3/website" target="_blank"><img src="https://opencollective.com/react-timeline-gantt/sponsor/3/avatar.svg"></a>
-<a href="https://opencollective.com/react-timeline-gantt/sponsor/4/website" target="_blank"><img src="https://opencollective.com/react-timeline-gantt/sponsor/4/avatar.svg"></a>
-<a href="https://opencollective.com/react-timeline-gantt/sponsor/5/website" target="_blank"><img src="https://opencollective.com/react-timeline-gantt/sponsor/5/avatar.svg"></a>
-<a href="https://opencollective.com/react-timeline-gantt/sponsor/6/website" target="_blank"><img src="https://opencollective.com/react-timeline-gantt/sponsor/6/avatar.svg"></a>
-<a href="https://opencollective.com/react-timeline-gantt/sponsor/7/website" target="_blank"><img src="https://opencollective.com/react-timeline-gantt/sponsor/7/avatar.svg"></a>
-<a href="https://opencollective.com/react-timeline-gantt/sponsor/8/website" target="_blank"><img src="https://opencollective.com/react-timeline-gantt/sponsor/8/avatar.svg"></a>
-<a href="https://opencollective.com/react-timeline-gantt/sponsor/9/website" target="_blank"><img src="https://opencollective.com/react-timeline-gantt/sponsor/9/avatar.svg"></a>
-
-

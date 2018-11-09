@@ -1,62 +1,36 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import Config from 'libs/helpers/config/Config';
-import ContentEditable from 'libs/components/common/ContentEditable';
 
-export class VerticalLine extends Component {
-  constructor(props) {
-    super(props);
-  }
+export const VerticalLine = ({ left }) => (
+  <div className="timeLine-main-data-verticalLine" style={{ left }} />
+);
+VerticalLine.propTypes = {
+  left: PropTypes.number.isRequired,
+};
 
-  render() {
-    return (
-      <div
-        className="timeLine-main-data-verticalLine"
-        style={{ left: this.props.left }}
-      />
-    );
-  }
-}
-
-export class TaskRow extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  onChange = value => {
-    if (this.props.onUpdateTask) {
-      this.props.onUpdateTask(this.props.item, { name: value });
-    }
-  };
-
-  render() {
-    return (
-      <div
-        className="timeLine-side-task-row"
-        style={{
-          ...Config.values.taskList.task.style,
-          top: this.props.top,
-          height: this.props.itemheight,
-        }}
-        onClick={e => this.props.onSelectItem(this.props.item)}
-      >
-        <ContentEditable
-          value={this.props.label}
-          index={this.props.index}
-          onChange={this.onChange}
-        />
-      </div>
-    );
-  }
-}
+const TaskRow = ({ top, itemheight, item, label, onSelectItem }) => (
+  <div
+    className="timeLine-side-task-row"
+    style={{
+      ...Config.values.taskList.task.style,
+      top,
+      height: itemheight,
+    }}
+    role="button"
+    tabIndex={0}
+    onKeyDown={() => onSelectItem(item)}
+    onClick={() => onSelectItem(item)}
+  >
+    {label}
+  </div>
+);
 
 export default class TaskList extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   getContainerStyle(rows) {
-    const new_height = rows > 0 ? rows * this.props.itemheight : 10;
-    return { height: new_height };
+    const height = rows > 0 ? rows * this.props.itemheight : 10;
+    return { height };
   }
 
   renderTaskRow(data) {
