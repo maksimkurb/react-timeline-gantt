@@ -16,10 +16,10 @@ Based on [react-timeline-gantt](https://github.com/guiqui/react-timeline-gantt)
 
 A react timeline gantt component.
 
-![screencast](https://maksimkurb.github.io/react-timeline-gantt/demo.gif)
+![screencast](https://maksimkurb.github.io/react-yagt/demo.gif)
 
 ## About
-React-timeline-gantt is a component built to display and manage calendar gantt charts.
+React-yagt is a component built to display and manage calendar gantt charts.
 It use virtual rendering to be reactive an efficient.
 
 The component is capable of:
@@ -35,7 +35,7 @@ The component is capable of:
 
  To watch a demo take a look at [video](https://youtu.be/ASGD1FXOafw) that shows how to use the component.
  
- To play with a live [demo](https://maksimkurb.github.io/react-timeline-gantt/) .
+ To play with a live [demo](https://maksimkurb.github.io/react-yagt/) .
 
 
 ## Installation
@@ -90,7 +90,7 @@ Here is the demo code:
  [![Edit 1y2on87jj](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/1y2on87jj)
 
 ## Handling Inserts,Updates and Deletes
-The React-timeline-gantt was build to be use under a Flux architecture, this means that the component should not be managing the state of the application, is up the store and only the store to modify the state of the application. What our component does is to give you callbacks to know when the component is asking for a change.
+The React-yagt was build to be use under a Flux architecture, this means that the component should not be managing the state of the application, is up the store and only the store to modify the state of the application. What our component does is to give you callbacks to know when the component is asking for a change.
 
 The TimeLine component is responsible for  two things:
 
@@ -98,7 +98,7 @@ The TimeLine component is responsible for  two things:
  - Creating Links
  
 Adding,Deleting Task or links can be manage with logic outside the component.
-For this reason  the react-timeline-gantt component provides the following callbacks:
+For this reason the react-yagt component provides the following callbacks:
  
 
 | name      | params   | Descriptions                        |
@@ -194,7 +194,7 @@ Once the object is defined we just need to pass the config object to the timelin
 
 This diagram shows the different elements of timeline component and where are they place:
 
-![configMap](https://guiqui.github.io/react-timeline-gantt/ConfigMap.png)
+![configMap](https://maksimkurb.github.io/react-yagt/ConfigMap.png)
 
 Here is a demo:
 
