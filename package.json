@@ -4,14 +4,14 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "start": "webpack-dev-server --mode development --open --config webpack.config.demo.js ",
+    "start": "webpack-dev-server --mode development --open --config webpack.config.demo.js",
     "prod": "webpack --mode production --open --config webpack.config.prod.js ",
-    "prodser": "webpack-dev-server  --mode production --open --config webpack.config.prod.js ",
-    "build": "webpack --mode production  --config webpack.config.build.js",
+    "prod:serve": "webpack-dev-server --mode production --open --config webpack.config.prod.js",
+    "build": "webpack --mode production --config webpack.config.build.js",
     "lint": "eslint src",
-    "test": "jest && codecov",
+    "test": "jest",
     "prepublish": "rm -rf ./dist && npm run build",
-    "postinstall": "opencollective-postinstall"
+    "postinstall": "yarn add -P css-layout moment react react-dom react-sizeme"
   },
   "peerDependencies": {
     "css-layout": "^1.1.1",
@@ -55,7 +55,10 @@
     "webpack-cli": "^3.1.1",
     "webpack-dev-server": "^3.1.4"
   },
-  "author": "Guillermo  Quiros",
+  "contributors": [
+    "Guillermo  Quiros",
+    "Maxim Kurbatov <max@cubly.ru>"
+  ],
   "license": "MIT",
   "keywords": [
     "react",
@@ -68,13 +71,5 @@
     "calendar",
     "project management"
   ],
-  "homepage": "https://github.com/guiqui/react-timeline-gantt",
-  "dependencies": {
-    "opencollective": "^1.0.3",
-    "opencollective-postinstall": "^2.0.1"
-  },
-  "collective": {
-    "type": "opencollective",
-    "url": "https://opencollective.com/react-timeline-gantt"
-  }
+  "homepage": "https://github.com/maksimkurb/react-timeline-gantt"
 }
