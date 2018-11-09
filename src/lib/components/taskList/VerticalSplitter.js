@@ -20,14 +20,12 @@ export default class VerticalSplitter extends Component {
     }
   }
 
-  dragStart(x, e) {
-    e.stopPropagation();
+  dragStart(x) {
     this.draggingPosition = x;
     this.setState({ dragging: true });
   }
 
-  dragProcess(x, e) {
-    e.stopPropagation();
+  dragProcess(x) {
     if (this.state.dragging) {
       const delta = this.draggingPosition - x;
       this.draggingPosition = x;
@@ -35,22 +33,25 @@ export default class VerticalSplitter extends Component {
     }
   }
 
-  dragEnd(e) {
-    e.stopPropagation();
+  dragEnd() {
     this.setState({ dragging: false });
   }
 
-  doMouseDown = e => e.button === 0 && this.dragStart(e.clientX, e);
+  /* eslint-disable lines-between-class-members */
+  doMouseDown = e => e.button === 0 && this.dragStart(e.clientX);
+  doMouseMove = e => {
+    e.stopPropagation();
+    this.dragProcess(e.clientX);
+  };
+  doMouseUp = () => this.dragEnd();
 
-  doMouseMove = e => this.dragProcess(e.clientX, e);
-
-  doMouseUp = e => this.dragEnd(e);
-
-  doTouchStart = e => this.dragStart(e.touches[0].clientX, e);
-
-  doTouchMove = e => this.dragProcess(e.touches[0].clientX, e);
-
-  doTouchEnd = e => this.dragEnd(e);
+  doTouchStart = e => this.dragStart(e.touches[0].clientX);
+  doTouchMove = e => {
+    e.stopPropagation();
+    this.dragProcess(e.touches[0].clientX);
+  };
+  doTouchEnd = () => this.dragEnd();
+  /* eslint-enable lines-between-class-members */
 
   render() {
     return (

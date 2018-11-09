@@ -208,56 +208,52 @@ class TimeLine extends Component {
   };
 
   // ///////////////////
-  //   MOUSE EVENTS  //
+  //   MOUSE EVENTS   //
   // ///////////////////
 
+  dragStart(x) {
+    this.dragging = true;
+    this.draggingPosition = x;
+  }
+
+  dragProcess(x) {
+    if (this.dragging) {
+      const delta = this.draggingPosition - x;
+
+      if (delta !== 0) {
+        this.draggingPosition = x;
+        this.horizontalChange(this.state.scrollLeft + delta);
+      }
+    }
+  }
+
+  dragEnd() {
+    this.dragging = false;
+  }
+
+  /* eslint-disable lines-between-class-members */
   doMouseDown = e => {
-    this.dragging = true;
-    this.draggingPosition = e.clientX;
+    e.preventDefault();
+    this.dragStart(e.clientX);
   };
-
   doMouseMove = e => {
-    if (this.dragging) {
-      const delta = this.draggingPosition - e.clientX;
-
-      if (delta !== 0) {
-        this.draggingPosition = e.clientX;
-        this.horizontalChange(this.state.scrollLeft + delta);
-      }
-    }
+    e.preventDefault();
+    this.dragProcess(e.clientX);
+  };
+  doMouseUp = e => {
+    e.preventDefault();
+    this.dragEnd();
+  };
+  doMouseLeave = e => {
+    e.preventDefault();
+    this.dragEnd();
   };
 
-  doMouseUp = () => {
-    this.dragging = false;
-  };
-
-  doMouseLeave = () => {
-    this.dragging = false;
-  };
-
-  doTouchStart = e => {
-    this.dragging = true;
-    this.draggingPosition = e.touches[0].clientX;
-  };
-
-  doTouchEnd = () => {
-    this.dragging = false;
-  };
-
-  doTouchMove = e => {
-    if (this.dragging) {
-      const delta = this.draggingPosition - e.touches[0].clientX;
-
-      if (delta !== 0) {
-        this.draggingPosition = e.touches[0].clientX;
-        this.horizontalChange(this.state.scrollLeft + delta);
-      }
-    }
-  };
-
-  doTouchCancel = () => {
-    this.dragging = false;
-  };
+  doTouchStart = e => this.dragStart(e.touches[0].clientX);
+  doTouchMove = e => this.dragProcess(e.touches[0].clientX);
+  doTouchEnd = e => this.dragEnd();
+  doTouchCancel = e => this.dragEnd();
+  /* eslint-enable lines-between-class-members */
 
   doMouseLeave = () => {
     // if (!e.relatedTarget.nodeName)
